@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MeetMate.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -10,30 +11,33 @@ using Microsoft.Extensions.Logging;
 namespace MeetMate.API.Controllers
 {
 
-    // http:localhost:5000/values
+    // http:localhost:5000/api/values
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[Controller]")]
     public class ValuesController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
 
-        public ValuesController(DataContext context) {
-            this.context = context;
+        public ValuesController(DataContext context)
+        {
+            _context = context;
         }
-        // GET /values
+        // GET api/values
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
-            var values = await context.Values.ToListAsync();
+            var values = await _context.Values.ToListAsync();
 
             return Ok(values);
         }
 
-        // GET /values/5
+        // GET api/values/3
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await context.Values.FirstOrDefaultAsync(v => v.Id == id);
+            var value = await _context.Values.FirstOrDefaultAsync(v => v.Id == id);
 
             return Ok(value);
         }
