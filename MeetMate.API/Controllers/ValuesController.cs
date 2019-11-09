@@ -7,14 +7,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
 namespace MeetMate.API.Controllers
 {
 
-    // http:localhost:5000/api/values
-    [Authorize]
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("[Controller]")]
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
@@ -33,7 +30,7 @@ namespace MeetMate.API.Controllers
         }
 
         // GET api/values/3
-        [AllowAnonymous]
+        // [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
