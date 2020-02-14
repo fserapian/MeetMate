@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ValueService } from '../services/value.service';
+import { Value } from '../models/value';
 
 @Component({
   selector: 'app-value',
@@ -7,21 +9,27 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./value.component.css']
 })
 export class ValueComponent implements OnInit {
-  title = 'Meet Mate';
-  values: any;
-  data: any;
-  users: Object[]
 
-  constructor(private http: HttpClient) { }
+  title = 'Meet Mate';
+  // values: any;
+  data: any;
+  users: Object[];
+  values: any;
+
+  constructor(
+    // private valueService: ValueService)
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
     this.getValues();
     // this.getData();
     // this.getFiveRandomUsers();
+    // this.valueService.getValues().subscribe(response => this.values = response);
   }
 
   getValues() {
-    this.http.get('http://localhost:5000/values').subscribe(response => {
+    this.http.get('http://localhost:5000/api/values').subscribe(response => {
       this.values = response;
     }, error => console.log(error));
   }
