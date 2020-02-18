@@ -14,7 +14,7 @@ namespace MeetMate.API.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
@@ -49,7 +49,7 @@ namespace MeetMate.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserForLoginDTO userForLogin)
+        public async Task<IActionResult> Login(UserForLogin userForLogin)
         {
             var userFromRepo = await _repo.Login(userForLogin.Username.ToLower(), userForLogin.Password);
 
@@ -80,10 +80,11 @@ namespace MeetMate.API.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return Ok(
-              new
-              {
-                  token = tokenHandler.WriteToken(token)
-              });
+                new
+                {
+                    token = tokenHandler.WriteToken(token)
+                }
+              );
         }
     }
 }

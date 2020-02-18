@@ -60,13 +60,14 @@ namespace MeetMate.API
 
             app.UseRouting();
 
+            // Use authentication
+            app.UseAuthentication();
+
+            // Use authorization
             app.UseAuthorization();
 
             // Allow communication between origins
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            // Use authentication
-            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

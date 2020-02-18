@@ -10,8 +10,9 @@ using Microsoft.Extensions.Logging;
 namespace MeetMate.API.Controllers
 {
 
+    // [Authorize]
     [ApiController]
-    [Route("[Controller]")]
+    [Route("api/[Controller]")]
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
