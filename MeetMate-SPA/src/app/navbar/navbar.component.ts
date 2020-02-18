@@ -20,6 +20,10 @@ export class NavbarComponent implements OnInit {
       .subscribe(next => console.log('Logged in!'), error => console.log('Cannot login!'));
   }
 
+  onSubmit() {
+    console.log(this.model);
+  }
+
   // loggedIn() {
 
   //   localStorage.setItem(token);
