@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ValueService } from '../services/value.service';
-import { Value } from '../models/value';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { ValueService } from "../services/value.service";
+import { Value } from "../models/value";
 
 @Component({
-  selector: 'app-value',
-  templateUrl: './value.component.html',
-  styleUrls: ['./value.component.css']
+  selector: "app-value",
+  templateUrl: "./value.component.html",
+  styleUrls: ["./value.component.css"]
 })
 export class ValueComponent implements OnInit {
-
-  title = 'Meet Mate';
+  title = "Meet Mate";
   // values: any;
   data: any;
   users: Object[];
@@ -19,7 +18,7 @@ export class ValueComponent implements OnInit {
   constructor(
     // private valueService: ValueService)
     private http: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getValues();
@@ -29,9 +28,12 @@ export class ValueComponent implements OnInit {
   }
 
   getValues() {
-    this.http.get('http://localhost:5000/api/values').subscribe(response => {
-      this.values = response;
-    }, error => console.log(error));
+    this.http.get("http://localhost:5000/api/values").subscribe(
+      response => {
+        this.values = response;
+      },
+      error => console.log(error)
+    );
   }
 
   // getData() {
@@ -41,5 +43,4 @@ export class ValueComponent implements OnInit {
   // getFiveRandomUsers() {
   //   this.http.get('https://randomuser.me/api/?results=5').subscribe((response: any) => this.users = response.results)
   // }
-
 }
