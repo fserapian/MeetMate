@@ -58,10 +58,9 @@ namespace MeetMate.API.Controllers
                 return Unauthorized();
             }
 
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+            var claims = new[] {
+                new Claim (ClaimTypes.NameIdentifier, userFromRepo.Id.ToString ()),
+                new Claim (ClaimTypes.Name, userFromRepo.Username)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
@@ -84,7 +83,7 @@ namespace MeetMate.API.Controllers
                 {
                     token = tokenHandler.WriteToken(token)
                 }
-              );
+            );
         }
     }
 }
