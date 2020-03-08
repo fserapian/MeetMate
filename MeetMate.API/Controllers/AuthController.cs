@@ -51,6 +51,8 @@ namespace MeetMate.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLogin userForLogin)
         {
+            throw new Exception("The computer says NO!");
+
             var userFromRepo = await _repo.Login(userForLogin.Username.ToLower(), userForLogin.Password);
 
             if (userFromRepo == null)
