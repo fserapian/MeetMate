@@ -9,11 +9,12 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthService } from "./services/auth.service";
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorInterceptorProvider } from './services/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, HomeComponent, RegisterComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule],
-  providers: [AuthService],
+  providers: [AuthService, ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   login() {
     this.service.login(this.model).subscribe(
       next => console.log("Logged in!"),
-      error => console.log("Cannot login!")
+      error => console.log(error)
     );
   }
 
