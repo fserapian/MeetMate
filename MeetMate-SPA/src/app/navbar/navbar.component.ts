@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 import { AlertifyService } from '../services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-navbar",
@@ -10,7 +11,11 @@ import { AlertifyService } from '../services/alertify.service';
 export class NavbarComponent implements OnInit {
   model: any = {};
 
-  constructor(public authService: AuthService, private alertify: AlertifyService) { }
+  constructor(
+    public authService: AuthService,
+    private alertify: AlertifyService,
+    private router: Router
+  ) { }
 
   ngOnInit() { }
 
@@ -21,20 +26,21 @@ export class NavbarComponent implements OnInit {
       },
       error => {
         this.alertify.error(error.title);
+      },
+      () => {
+        this.router.navigate(['/members']);
       }
     );
   }
 
   loggedIn() {
-    // const token = localStorage.getItem("token");
-    // return !!token; // return true if there is something in token and false if it is empty
-
     return this.authService.loggedIn();
   }
 
   logout() {
     localStorage.removeItem("token");
     this.alertify.message('Logged out');
+    this.router.navigate(['/home']);
   }
 
 }
